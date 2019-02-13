@@ -1,0 +1,40 @@
+version: '3.3'
+
+services: 
+
+ nextcloud:
+   image: nextcloud
+   ports:
+    - 8080:80 
+
+ redis:
+  image: redis 
+  deploy:
+   replicas: 1 
+  ports:
+   - 6379:6379
+
+ monitoracao:
+  image: google/cadvisor:latest
+  ports:
+   - 8585:8080
+  deploy:
+   mode: global
+   resources:
+    limits:
+     cpus: '0.50'
+     memory: 512M
+  volumes:
+   - /:/rootfs:ro
+   - /var/run:/var/run:ro
+   - /sys:/sys:ro
+   - /var/lib/docker/:/var/lib/docker:ro
+   - /dev/disk/:/dev/disk:ro
+
+ site:
+  image: gpolicante/ivar-site
+  ports:
+    - 80:80 
+
+
+ 
