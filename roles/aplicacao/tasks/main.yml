@@ -1,0 +1,9 @@
+---
+# tasks file for aplicacao
+
+- name: garantindo a infraestrutura para sustentar  a aplicacao
+  include_tasks: "{{item}}"
+  with_items: 
+    -  docker.yaml
+    - container.yaml
+

@@ -1,0 +1,9 @@
+
+- name: fazendo deploy da aplicacao no container
+  docker_container:
+   name: minhaapp
+   image: gpolicante/ivar-site
+   ports:
+    - 80:80
+
+

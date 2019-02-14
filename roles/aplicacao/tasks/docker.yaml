@@ -1,0 +1,26 @@
+
+- name: instalando os pacotes bases da aplicacao 
+  package:
+   name: "{{item.nome}}"
+  with_items:
+   - {nome: "epel-release"}
+   - {nome: "python-pip" }
+   - {nome: "git" }
+
+- name: instalando modulos do dockerpy
+  pip:
+   name: docker
+
+- name: baixando o docker 
+  get_url:
+   url: https://get.docker.com
+   dest: /tmp/get-docker.sh
+
+- name: instalando o docker
+  shell: sh /tmp/get-docker.sh 
+
+- name: garantindo o docker rodando
+  service:
+   name: docker
+   state: restarted 
+   enabled: yes 

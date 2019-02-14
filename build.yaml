@@ -1,0 +1,4 @@
+- name: criando uma aplicacao em container
+  hosts: remoto
+  roles:
+   - aplicacao
